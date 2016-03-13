@@ -33,7 +33,7 @@
 #warning todo 修改aaa为你自己app的scheme
     if (![url.scheme isEqualToString:@"aaa"]) {
         // 这里就是针对远程app调用404的简单处理了，根据不同app的产品经理要求不同，你们可以在这里自己做需要的逻辑
-        return nil;
+        return @(NO);
     }
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
@@ -47,7 +47,7 @@
     // 这里这么写主要是出于安全考虑，防止黑客通过远程方式调用本地模块。这里的做法足以应对绝大多数场景，如果要求更加严苛，也可以做更加复杂的安全逻辑。
     NSString *actionName = [url.path stringByReplacingOccurrencesOfString:@"/" withString:@""];
     if ([actionName hasPrefix:@"native"]) {
-        return nil;
+        return @(NO);
     }
     
     // 这个demo针对URL的路由处理非常简单，就只是取对应的target名字和method名字，但这已经足以应对绝大部份需求。如果需要拓展，可以在这个方法调用之前加入完整的路由逻辑
