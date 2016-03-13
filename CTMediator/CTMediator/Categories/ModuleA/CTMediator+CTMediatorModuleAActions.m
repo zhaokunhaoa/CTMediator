@@ -10,7 +10,7 @@
 
 NSString * const kCTMediatorTargetA = @"A";
 
-NSString * const kCTMediatorActionNativFetchDetailViewController = @"nativFetchDetailViewController";
+NSString * const kCTMediatorActionNativFetchDetailViewController = @"nativeFetchDetailViewController";
 NSString * const kCTMediatorActionNativePresentImage = @"nativePresentImage";
 NSString * const kCTMediatorActionNativeNoImage = @"nativeNoImage";
 NSString * const kCTMediatorActionShowAlert = @"showAlert";

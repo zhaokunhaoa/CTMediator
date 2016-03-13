@@ -13,7 +13,7 @@ typedef void (^CTUrlRouterCallbackBlock)(NSDictionary *info);
 
 @implementation Target_A
 
-- (UIViewController *)Action_nativFetchDetailViewController:(NSDictionary *)params
+- (UIViewController *)Action_nativeFetchDetailViewController:(NSDictionary *)params
 {
     // 因为action是从属于ModuleA的，所以action直接可以使用ModuleA里的所有声明
     DemoModuleADetailViewController *viewController = [[DemoModuleADetailViewController alloc] init];
