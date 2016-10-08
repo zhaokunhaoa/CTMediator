@@ -14,9 +14,9 @@
 		4A5CE50A1C9531C9006AEDB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5CE5091C9531C9006AEDB9 /* Assets.xcassets */; };
 		4A5CE50D1C9531C9006AEDB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5CE50B1C9531C9006AEDB9 /* LaunchScreen.storyboard */; };
 		4A5CE51A1C95322F006AEDB9 /* CTMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5CE5191C95322F006AEDB9 /* CTMediator.m */; };
-		4A5CE51D1C9538CB006AEDB9 /* CTMediator+CTMediatorModuleAActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5CE51C1C9538CB006AEDB9 /* CTMediator+CTMediatorModuleAActions.m */; };
 		4A5CE5251C953D7D006AEDB9 /* DemoModuleADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5CE5241C953D7D006AEDB9 /* DemoModuleADetailViewController.m */; };
 		4A5CE52B1C9547B2006AEDB9 /* Target_A.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5CE52A1C9547B2006AEDB9 /* Target_A.m */; };
+		4A85F5541DA92AFC00DB882C /* CTMediator+CTMediatorModuleAActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A85F5531DA92AFC00DB882C /* CTMediator+CTMediatorModuleAActions.m */; };
 		6A1C7FA419878A7AFA10DB7C /* libPods-CTMediator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CDD4389F5AEA1D8F6AA0C9F /* libPods-CTMediator.a */; };
 /* End PBXBuildFile section */
 
@@ -35,12 +35,12 @@
 		4A5CE50E1C9531C9006AEDB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A5CE5181C95322F006AEDB9 /* CTMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTMediator.h; sourceTree = "<group>"; };
 		4A5CE5191C95322F006AEDB9 /* CTMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTMediator.m; sourceTree = "<group>"; };
-		4A5CE51B1C9538CB006AEDB9 /* CTMediator+CTMediatorModuleAActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTMediator+CTMediatorModuleAActions.h"; sourceTree = "<group>"; };
-		4A5CE51C1C9538CB006AEDB9 /* CTMediator+CTMediatorModuleAActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTMediator+CTMediatorModuleAActions.m"; sourceTree = "<group>"; };
 		4A5CE5231C953D7D006AEDB9 /* DemoModuleADetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoModuleADetailViewController.h; sourceTree = "<group>"; };
 		4A5CE5241C953D7D006AEDB9 /* DemoModuleADetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoModuleADetailViewController.m; sourceTree = "<group>"; };
 		4A5CE5291C9547B2006AEDB9 /* Target_A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target_A.h; sourceTree = "<group>"; };
 		4A5CE52A1C9547B2006AEDB9 /* Target_A.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target_A.m; sourceTree = "<group>"; };
+		4A85F5521DA92AFC00DB882C /* CTMediator+CTMediatorModuleAActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTMediator+CTMediatorModuleAActions.h"; sourceTree = "<group>"; };
+		4A85F5531DA92AFC00DB882C /* CTMediator+CTMediatorModuleAActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTMediator+CTMediatorModuleAActions.m"; sourceTree = "<group>"; };
 		E9C114EF1101F17773DD4798 /* Pods-CTMediator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTMediator.release.xcconfig"; path = "Pods/Target Support Files/Pods-CTMediator/Pods-CTMediator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,8 +77,9 @@
 		4A5CE4FC1C9531C9006AEDB9 /* CTMediator */ = {
 			isa = PBXGroup;
 			children = (
-				4A5CE5141C9531E9006AEDB9 /* CTMediator */,
-				4A5CE5211C953D5A006AEDB9 /* DemoModule */,
+				4A85F5501DA92AFC00DB882C /* Categories(实际应用中，这是一个单独的repo，所用需要调度其他模块的人，只需要依赖这个repo。这个repo由target-action维护者维护) */,
+				4A5CE5141C9531E9006AEDB9 /* CTMediator（这也是单独的repo，完整的中间件就这100行代码） */,
+				4A5CE5211C953D5A006AEDB9 /* DemoModule（target-action所在的模块，也就是提供服务的模块，这也是单独的repo，但无需被其他人依赖，其他人通过category调用到这里的功能） */,
 				4A5CE5001C9531C9006AEDB9 /* AppDelegate.h */,
 				4A5CE5011C9531C9006AEDB9 /* AppDelegate.m */,
 				4A5CE5031C9531C9006AEDB9 /* ViewController.h */,
@@ -100,40 +101,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4A5CE5141C9531E9006AEDB9 /* CTMediator */ = {
+		4A5CE5141C9531E9006AEDB9 /* CTMediator（这也是单独的repo，完整的中间件就这100行代码） */ = {
 			isa = PBXGroup;
 			children = (
 				4A5CE5181C95322F006AEDB9 /* CTMediator.h */,
 				4A5CE5191C95322F006AEDB9 /* CTMediator.m */,
-				4A5CE5151C95320F006AEDB9 /* Categories */,
 			);
+			name = "CTMediator（这也是单独的repo，完整的中间件就这100行代码）";
 			path = CTMediator;
 			sourceTree = "<group>";
 		};
-		4A5CE5151C95320F006AEDB9 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				4A5CE5161C95320F006AEDB9 /* ModuleA */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
-		4A5CE5161C95320F006AEDB9 /* ModuleA */ = {
-			isa = PBXGroup;
-			children = (
-				4A5CE51B1C9538CB006AEDB9 /* CTMediator+CTMediatorModuleAActions.h */,
-				4A5CE51C1C9538CB006AEDB9 /* CTMediator+CTMediatorModuleAActions.m */,
-			);
-			path = ModuleA;
-			sourceTree = "<group>";
-		};
-		4A5CE5211C953D5A006AEDB9 /* DemoModule */ = {
+		4A5CE5211C953D5A006AEDB9 /* DemoModule（target-action所在的模块，也就是提供服务的模块，这也是单独的repo，但无需被其他人依赖，其他人通过category调用到这里的功能） */ = {
 			isa = PBXGroup;
 			children = (
 				4A5CE5221C953D5A006AEDB9 /* Actions */,
 				4A5CE5231C953D7D006AEDB9 /* DemoModuleADetailViewController.h */,
 				4A5CE5241C953D7D006AEDB9 /* DemoModuleADetailViewController.m */,
 			);
+			name = "DemoModule（target-action所在的模块，也就是提供服务的模块，这也是单独的repo，但无需被其他人依赖，其他人通过category调用到这里的功能）";
 			path = DemoModule;
 			sourceTree = "<group>";
 		};
@@ -144,6 +129,24 @@
 				4A5CE52A1C9547B2006AEDB9 /* Target_A.m */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		4A85F5501DA92AFC00DB882C /* Categories(实际应用中，这是一个单独的repo，所用需要调度其他模块的人，只需要依赖这个repo。这个repo由target-action维护者维护) */ = {
+			isa = PBXGroup;
+			children = (
+				4A85F5511DA92AFC00DB882C /* ModuleA */,
+			);
+			name = "Categories(实际应用中，这是一个单独的repo，所用需要调度其他模块的人，只需要依赖这个repo。这个repo由target-action维护者维护)";
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		4A85F5511DA92AFC00DB882C /* ModuleA */ = {
+			isa = PBXGroup;
+			children = (
+				4A85F5521DA92AFC00DB882C /* CTMediator+CTMediatorModuleAActions.h */,
+				4A85F5531DA92AFC00DB882C /* CTMediator+CTMediatorModuleAActions.m */,
+			);
+			path = ModuleA;
 			sourceTree = "<group>";
 		};
 		9449B9483205DCF29E913981 /* Frameworks */ = {
@@ -170,12 +173,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A5CE5111C9531C9006AEDB9 /* Build configuration list for PBXNativeTarget "CTMediator" */;
 			buildPhases = (
+				9F6811B15C0C49802EEE481B /* 📦 Check Pods Manifest.lock */,
 				0DEB0101A9257C7385F33550 /* [CP] Check Pods Manifest.lock */,
 				4A5CE4F61C9531C9006AEDB9 /* Sources */,
 				4A5CE4F71C9531C9006AEDB9 /* Frameworks */,
 				4A5CE4F81C9531C9006AEDB9 /* Resources */,
 				DE1107096F7B448AE308B9C0 /* [CP] Embed Pods Frameworks */,
 				9707C81239BADCAA33999A4E /* [CP] Copy Pods Resources */,
+				1368A96872E8860F3D9A10DC /* 📦 Embed Pods Frameworks */,
+				9A6274AAF6A236E9C92CE871 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,6 +253,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		1368A96872E8860F3D9A10DC /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CTMediator/Pods-CTMediator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9707C81239BADCAA33999A4E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +281,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CTMediator/Pods-CTMediator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A6274AAF6A236E9C92CE871 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CTMediator/Pods-CTMediator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F6811B15C0C49802EEE481B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DE1107096F7B448AE308B9C0 /* [CP] Embed Pods Frameworks */ = {
@@ -284,9 +335,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A5CE51D1C9538CB006AEDB9 /* CTMediator+CTMediatorModuleAActions.m in Sources */,
 				4A5CE5051C9531C9006AEDB9 /* ViewController.m in Sources */,
 				4A5CE5021C9531C9006AEDB9 /* AppDelegate.m in Sources */,
+				4A85F5541DA92AFC00DB882C /* CTMediator+CTMediatorModuleAActions.m in Sources */,
 				4A5CE4FF1C9531C9006AEDB9 /* main.m in Sources */,
 				4A5CE5251C953D7D006AEDB9 /* DemoModuleADetailViewController.m in Sources */,
 				4A5CE51A1C95322F006AEDB9 /* CTMediator.m in Sources */,
