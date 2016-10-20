@@ -14,6 +14,8 @@ NSString * const kCTMediatorActionNativFetchDetailViewController = @"nativeFetch
 NSString * const kCTMediatorActionNativePresentImage = @"nativePresentImage";
 NSString * const kCTMediatorActionNativeNoImage = @"nativeNoImage";
 NSString * const kCTMediatorActionShowAlert = @"showAlert";
+NSString * const kCTMediatorActionCell = @"cell";
+NSString * const kCTMediatorActionConfigCell = @"configCell";
 
 @implementation CTMediator (CTMediatorModuleAActions)
 
@@ -21,7 +23,9 @@ NSString * const kCTMediatorActionShowAlert = @"showAlert";
 {
     UIViewController *viewController = [self performTarget:kCTMediatorTargetA
                                                     action:kCTMediatorActionNativFetchDetailViewController
-                                                    params:@{@"key":@"value"}];
+                                                    params:@{@"key":@"value"}
+                                         shouldCacheTarget:NO
+                                        ];
     if ([viewController isKindOfClass:[UIViewController class]]) {
         // view controller 交付出去之后，可以由外界选择是push还是present
         return viewController;
@@ -36,12 +40,14 @@ NSString * const kCTMediatorActionShowAlert = @"showAlert";
     if (image) {
         [self performTarget:kCTMediatorTargetA
                      action:kCTMediatorActionNativePresentImage
-                     params:@{@"image":image}];
+                     params:@{@"image":image}
+          shouldCacheTarget:NO];
     } else {
         // 这里处理image为nil的场景，如何处理取决于产品
         [self performTarget:kCTMediatorTargetA
                      action:kCTMediatorActionNativeNoImage
-                     params:@{@"image":[UIImage imageNamed:@"noImage"]}];
+                     params:@{@"image":[UIImage imageNamed:@"noImage"]}
+          shouldCacheTarget:NO];
     }
 }
 
@@ -59,7 +65,36 @@ NSString * const kCTMediatorActionShowAlert = @"showAlert";
     }
     [self performTarget:kCTMediatorTargetA
                  action:kCTMediatorActionShowAlert
-                 params:paramsToSend];
+                 params:paramsToSend
+      shouldCacheTarget:NO];
+}
+
+- (UITableViewCell *)CTMediator_tableViewCellWithIdentifier:(NSString *)identifier tableView:(UITableView *)tableView
+{
+    return [self performTarget:kCTMediatorTargetA
+                        action:kCTMediatorActionCell
+                        params:@{
+                                 @"identifier":identifier,
+                                 @"tableView":tableView
+                                 }
+             shouldCacheTarget:YES];
+}
+
+- (void)CTMediator_configTableViewCell:(UITableViewCell *)cell withTitle:(NSString *)title atIndexPath:(NSIndexPath *)indexPath
+{
+    [self performTarget:kCTMediatorTargetA
+                 action:kCTMediatorActionConfigCell
+                 params:@{
+                          @"cell":cell,
+                          @"title":title,
+                          @"indexPath":indexPath
+                          }
+      shouldCacheTarget:YES];
+}
+
+- (void)CTMediator_cleanTableViewCellTarget
+{
+    [self releaseCachedTargetWithTargetName:kCTMediatorTargetA];
 }
 
 @end

@@ -8,6 +8,12 @@
 
 #import "CTMediator.h"
 
+@interface CTMediator ()
+
+@property (nonatomic, strong) NSMutableDictionary *cachedTarget;
+
+@end
+
 @implementation CTMediator
 
 #pragma mark - public methods
@@ -51,7 +57,7 @@
     }
     
     // 这个demo针对URL的路由处理非常简单，就只是取对应的target名字和method名字，但这已经足以应对绝大部份需求。如果需要拓展，可以在这个方法调用之前加入完整的路由逻辑
-    id result = [self performTarget:url.host action:actionName params:params];
+    id result = [self performTarget:url.host action:actionName params:params shouldCacheTarget:NO];
     if (completion) {
         if (result) {
             completion(@{@"result":result});
@@ -62,19 +68,27 @@
     return result;
 }
 
-- (id)performTarget:(NSString *)targetName action:(NSString *)actionName params:(NSDictionary *)params
+- (id)performTarget:(NSString *)targetName action:(NSString *)actionName params:(NSDictionary *)params shouldCacheTarget:(BOOL)shouldCacheTarget
 {
     
     NSString *targetClassString = [NSString stringWithFormat:@"Target_%@", targetName];
     NSString *actionString = [NSString stringWithFormat:@"Action_%@:", actionName];
     
-    Class targetClass = NSClassFromString(targetClassString);
-    id target = [[targetClass alloc] init];
+    id target = self.cachedTarget[targetClassString];
+    if (target == nil) {
+        Class targetClass = NSClassFromString(targetClassString);
+        target = [[targetClass alloc] init];
+    }
+    
     SEL action = NSSelectorFromString(actionString);
     
     if (target == nil) {
         // 这里是处理无响应请求的地方之一，这个demo做得比较简单，如果没有可以响应的target，就直接return了。实际开发过程中是可以事先给一个固定的target专门用于在这个时候顶上，然后处理这种请求的
         return nil;
+    }
+    
+    if (shouldCacheTarget) {
+        self.cachedTarget[targetClassString] = target;
     }
     
     if ([target respondsToSelector:action]) {
@@ -95,6 +109,21 @@
             return nil;
         }
     }
+}
+
+- (void)releaseCachedTargetWithTargetName:(NSString *)targetName
+{
+    NSString *targetClassString = [NSString stringWithFormat:@"Target_%@", targetName];
+    [self.cachedTarget removeObjectForKey:targetClassString];
+}
+
+#pragma mark - getters and setters
+- (NSMutableDictionary *)cachedTarget
+{
+    if (_cachedTarget == nil) {
+        _cachedTarget = [[NSMutableDictionary alloc] init];
+    }
+    return _cachedTarget;
 }
 
 @end

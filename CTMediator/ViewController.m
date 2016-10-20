@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <HandyFrame/UIView+LayoutMethods.h>
 #import "CTMediator+CTMediatorModuleAActions.h"
+#import "TableViewController.h"
 
 NSString * const kCellIdentifier = @"kCellIdentifier";
 
@@ -81,6 +82,11 @@ NSString * const kCellIdentifier = @"kCellIdentifier";
             NSLog(@"%@", info);
         }];
     }
+    
+    if (indexPath.row == 5) {
+        TableViewController *tableViewController = [[TableViewController alloc] init];
+        [self presentViewController:tableViewController animated:YES completion:nil];
+    }
 }
 
 #pragma mark - getters and setters
@@ -99,7 +105,7 @@ NSString * const kCellIdentifier = @"kCellIdentifier";
 - (NSArray *)dataSource
 {
     if (_dataSource == nil) {
-        _dataSource = @[@"present detail view controller", @"push detail view controller", @"present image", @"present image when error", @"show alert"];
+        _dataSource = @[@"present detail view controller", @"push detail view controller", @"present image", @"present image when error", @"show alert", @"table view cell"];
     }
     return _dataSource;
 }
