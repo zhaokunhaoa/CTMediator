@@ -30,9 +30,9 @@
     [self.view addSubview:self.returnButton];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewWillLayoutSubviews
 {
-    [super viewWillAppear:animated];
+    [super viewWillLayoutSubviews];
     
     [self.valueLabel sizeToFit];
     [self.valueLabel topInContainer:70 shouldResize:NO];

@@ -27,9 +27,9 @@
     [self.view addSubview:self.closeButton];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewWillLayoutSubviews
 {
-    [super viewWillAppear:animated];
+    [super viewWillLayoutSubviews];
     
     [self.tableView fillWidth];
     [self.tableView topInContainer:0 shouldResize:YES];

@@ -29,10 +29,9 @@ NSString * const kCellIdentifier = @"kCellIdentifier";
     [self.view addSubview:self.tableView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewWillLayoutSubviews
 {
-    [super viewWillAppear:animated];
-    
+    [super viewWillLayoutSubviews];
     [self.tableView fill];
 }
 
