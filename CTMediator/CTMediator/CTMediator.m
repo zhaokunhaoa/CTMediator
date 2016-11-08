@@ -106,6 +106,7 @@
 #pragma clang diagnostic pop
         } else {
             // 这里也是处理无响应请求的地方，在notFound都没有的时候，这个demo是直接return了。实际开发过程中，可以用前面提到的固定的target顶上的。
+            [self.cachedTarget removeObjectForKey:targetClassString];
             return nil;
         }
     }
