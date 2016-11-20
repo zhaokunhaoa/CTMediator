@@ -78,7 +78,6 @@ NSString * const kCellIdentifier = @"kCellIdentifier";
     if (indexPath.row == 4) {
         [[CTMediator sharedInstance] CTMediator_showAlertWithMessage:@"casa" cancelAction:nil confirmAction:^(NSDictionary *info) {
             // 做你想做的事
-            NSLog(@"%@", info);
         }];
     }
     
