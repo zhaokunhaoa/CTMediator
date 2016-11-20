@@ -270,6 +270,7 @@
 					};
 					4AC176551DE163B600566741 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = THS9SRQVES;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 4A5CE4F91C9531C9006AEDB9;
 					};
@@ -580,6 +581,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = THS9SRQVES;
 				INFOPLIST_FILE = CTMediatorUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -596,6 +598,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = THS9SRQVES;
 				INFOPLIST_FILE = CTMediatorUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
