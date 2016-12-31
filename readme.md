@@ -16,6 +16,14 @@ pod "CTMediator"
 
 [Demo](https://github.com/ModulizationDemo)
 
+跑demo时先添加私有库：
+
+```
+pod repo add PrivatePods https://github.com/ModulizationDemo/PrivatePods.git
+```
+
+然后就可以`pod install`了
+
 ---
 
 [iOS应用架构谈 组件化方案](http://casatwy.com/iOS-Modulization.html)
