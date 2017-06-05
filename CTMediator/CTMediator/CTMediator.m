@@ -89,27 +89,30 @@
     }
 
     if ([target respondsToSelector:action]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        return [target performSelector:action withObject:params];
-#pragma clang diagnostic pop
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//        return [target performSelector:action withObject:params];
+//#pragma clang diagnostic pop
+        return [self safePerformSelector:target action:action params:params];
     } else {
         // 有可能target是Swift对象
         actionString = [NSString stringWithFormat:@"Action_%@WithParams:", actionName];
         action = NSSelectorFromString(actionString);
         if ([target respondsToSelector:action]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            return [target performSelector:action withObject:params];
-#pragma clang diagnostic pop
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//            return [target performSelector:action withObject:params];
+//#pragma clang diagnostic pop
+            return [self safePerformSelector:target action:action params:params];
         } else {
             // 这里是处理无响应请求的地方，如果无响应，则尝试调用对应target的notFound方法统一处理
             SEL action = NSSelectorFromString(@"notFound:");
             if ([target respondsToSelector:action]) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                return [target performSelector:action withObject:params];
-#pragma clang diagnostic pop
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//                return [target performSelector:action withObject:params];
+//#pragma clang diagnostic pop
+                return [self safePerformSelector:target action:action params:params];
             } else {
                 // 这里也是处理无响应请求的地方，在notFound都没有的时候，这个demo是直接return了。实际开发过程中，可以用前面提到的固定的target顶上的。
                 [self.cachedTarget removeObjectForKey:targetClassString];
@@ -118,6 +121,37 @@
             }
         }
     }
+}
+
+- (id)safePerformSelector:(NSObject *)target action:(SEL)action params:(NSDictionary *)params
+{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    NSMethodSignature* methodSig = [target methodSignatureForSelector:action];
+    if(methodSig == nil){
+        NSAssert(NO, @"target not founded");
+        return nil;
+    }
+    const char* retType = [methodSig methodReturnType];
+    if(strcmp(retType, @encode(id)) == 0)
+    {
+        return [target performSelector:action withObject:params];
+    }
+    else if(strcmp(retType, @encode(void)) == 0){
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    methodSig];
+        [invocation setArgument:&params atIndex:2];
+        [invocation setSelector:action];
+        [invocation setTarget:target];
+        [invocation invoke];
+        return nil;
+    }
+    else{
+        NSAssert(NO, @"target not founded");
+        NSLog(@"-[%@ performSelector:@selector(%@)] shouldn't be used. The selector doesn't return an object or void", [target class], NSStringFromSelector(action));
+        return nil;
+    }
+#pragma clang diagnostic pop
 }
 
 - (void)releaseCachedTargetWithTargetName:(NSString *)targetName
