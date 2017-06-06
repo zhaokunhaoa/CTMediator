@@ -38,10 +38,10 @@
     [self.valueLabel topInContainer:70 shouldResize:NO];
     [self.valueLabel centerXEqualToView:self.view];
     
-    self.imageView.size = CGSizeMake(100, 100);
+    self.imageView.ct_size = CGSizeMake(100, 100);
     [self.imageView centerEqualToView:self.view];
     
-    self.returnButton.size = CGSizeMake(100, 100);
+    self.returnButton.ct_size = CGSizeMake(100, 100);
     [self.returnButton bottomInContainer:0 shouldResize:NO];
     [self.returnButton centerXEqualToView:self.view];
 }

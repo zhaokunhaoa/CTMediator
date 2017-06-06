@@ -123,21 +123,19 @@
         return nil;
     }
     const char* retType = [methodSig methodReturnType];
-    if(strcmp(retType, @encode(id)) == 0) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        return [target performSelector:action withObject:params];
-#pragma clang diagnostic pop
-    } else if(strcmp(retType, @encode(void)) == 0) {
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                    methodSig];
+
+    if (strcmp(retType, @encode(void)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
         [invocation setArgument:&params atIndex:2];
         [invocation setSelector:action];
         [invocation setTarget:target];
         [invocation invoke];
         return nil;
     } else {
-        return nil;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        return [target performSelector:action withObject:params];
+#pragma clang diagnostic pop
     }
 }
 
