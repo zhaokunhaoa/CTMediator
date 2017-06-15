@@ -16,6 +16,8 @@ pod "CTMediator"
 
 [Demo](https://github.com/ModulizationDemo)
 
+[Swift Demo](https://github.com/ModulizationDemo/SwfitDemo)
+
 跑demo时先添加私有库：
 
 ```
