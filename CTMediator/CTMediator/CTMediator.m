@@ -8,6 +8,7 @@
 
 #import "CTMediator.h"
 #import <objc/runtime.h>
+#import <UIKit/UIKit.h>
 
 @interface CTMediator ()
 
@@ -131,12 +132,56 @@
         [invocation setTarget:target];
         [invocation invoke];
         return nil;
-    } else {
+    }
+
+    if (strcmp(retType, @encode(NSInteger)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        [invocation setArgument:&params atIndex:2];
+        [invocation setSelector:action];
+        [invocation setTarget:target];
+        [invocation invoke];
+        NSInteger result = 0;
+        [invocation getReturnValue:&result];
+        return @(result);
+    }
+
+    if (strcmp(retType, @encode(BOOL)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        [invocation setArgument:&params atIndex:2];
+        [invocation setSelector:action];
+        [invocation setTarget:target];
+        [invocation invoke];
+        BOOL result = 0;
+        [invocation getReturnValue:&result];
+        return @(result);
+    }
+
+    if (strcmp(retType, @encode(CGFloat)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        [invocation setArgument:&params atIndex:2];
+        [invocation setSelector:action];
+        [invocation setTarget:target];
+        [invocation invoke];
+        CGFloat result = 0;
+        [invocation getReturnValue:&result];
+        return @(result);
+    }
+
+    if (strcmp(retType, @encode(NSUInteger)) == 0) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+        [invocation setArgument:&params atIndex:2];
+        [invocation setSelector:action];
+        [invocation setTarget:target];
+        [invocation invoke];
+        NSUInteger result = 0;
+        [invocation getReturnValue:&result];
+        return @(result);
+    }
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        return [target performSelector:action withObject:params];
+    return [target performSelector:action withObject:params];
 #pragma clang diagnostic pop
-    }
 }
 
 #pragma mark - getters and setters
