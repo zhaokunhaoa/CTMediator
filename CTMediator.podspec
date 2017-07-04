@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CTMediator"
-  s.version      = "10"
+  s.version      = "11"
   s.summary      = "CTMediator."
 
   # This description is used to generate tags and improve search results.
@@ -117,8 +117,8 @@ Pod::Spec.new do |s|
   #  the lib prefix of their name.
   #
 
-  s.framework  = "UIKit"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
+  # s.framework  = "UIKit"
+  s.frameworks = "UIKit"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
