@@ -16,7 +16,34 @@ pod "CTMediator"
 
 ---
 
-[Demo](https://github.com/ModulizationDemo)
+
+`CTMediator` helps you to devide your project into multi-project, and use `Target-Action` pattern to let subprojects to communicate with each other. `No register`
+
+you can check demo for more details:
+
+[Origin project](https://github.com/ModulizationDemo/MainProject)
+
+[Modulized Main Project with CTMediator](https://github.com/ModulizationDemo/ModulizedMainProject)
+
+[Demos](https://github.com/ModulizationDemo)
+
+[Swift Demo](https://github.com/ModulizationDemo/SwfitDemo)
+
+add private repo before you run demos:
+
+```
+pod repo add PrivatePods https://github.com/ModulizationDemo/PrivatePods.git
+```
+
+remember to run `pod install` before you run the demo!
+
+---
+
+[Origin project](https://github.com/ModulizationDemo/MainProject)
+
+[Modulized Main Project with CTMediator](https://github.com/ModulizationDemo/ModulizedMainProject)
+
+[Demos](https://github.com/ModulizationDemo)
 
 [Swift Demo](https://github.com/ModulizationDemo/SwfitDemo)
 
