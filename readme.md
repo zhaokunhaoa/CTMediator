@@ -57,9 +57,9 @@ pod repo add PrivatePods https://github.com/ModulizationDemo/PrivatePods.git
 
 ---
 
-(需要翻墙)[iOS应用架构谈 组件化方案](http://casatwy.com/iOS-Modulization.html)
+[iOS应用架构谈 组件化方案](http://casatwy.com/iOS-Modulization.html)
 
-(需要翻墙)[在现有工程中实施基于CTMediator的组件化方案](http://casatwy.com/modulization_in_action.html)
+[在现有工程中实施基于CTMediator的组件化方案](http://casatwy.com/modulization_in_action.html)
 
 ---
 
