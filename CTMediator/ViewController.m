@@ -85,6 +85,11 @@ NSString * const kCellIdentifier = @"kCellIdentifier";
         TableViewController *tableViewController = [[TableViewController alloc] init];
         [self presentViewController:tableViewController animated:YES completion:nil];
     }
+    
+    if (indexPath.row == 6) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"aaa://A/showAlert?message=1234"]];
+    }
+
 }
 
 #pragma mark - getters and setters
@@ -103,7 +108,7 @@ NSString * const kCellIdentifier = @"kCellIdentifier";
 - (NSArray *)dataSource
 {
     if (_dataSource == nil) {
-        _dataSource = @[@"present detail view controller", @"push detail view controller", @"present image", @"present image when error", @"show alert", @"table view cell"];
+        _dataSource = @[@"present detail view controller", @"push detail view controller", @"present image", @"present image when error", @"show alert", @"table view cell", @"openUrl"];
     }
     return _dataSource;
 }
